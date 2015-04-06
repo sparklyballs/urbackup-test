@@ -21,9 +21,7 @@ RUN usermod -u 99 nobody && \
 usermod -g 100 nobody && \
 
 # fix startup file
-mv /root/startup-files/start.sh /etc/my_init.d/start.sh && \
-chmod +x /etc/my_init.d/start.sh && \
-
+chmod +x /root/startup-files/start.sh && \
 
 # add repo, update apt and install build dependencies
 add-apt-repository ppa:uroni/urbackup && \
@@ -38,5 +36,5 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 (( find /usr/share/doc -depth -type f ! -name copyright|xargs rm || true )) && \
 (( find /usr/share/doc -empty|xargs rmdir || true ))
 
-
+CMD ["/root/startup-files/start.sh"]
 
