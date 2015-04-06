@@ -14,7 +14,7 @@ CMD ["/sbin/my_init"]
 ADD src/ /root/
 
 # set config volume
-VOLUME /config
+VOLUME /var/urbackup /tmp /BACKUPS
 
 # Fix a Debianism of the nobody's uid being 65534
 RUN usermod -u 99 nobody && \
@@ -34,7 +34,10 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 /usr/share/man /usr/share/groff /usr/share/info \
 /usr/share/lintian /usr/share/linda /var/cache/man && \
 (( find /usr/share/doc -depth -type f ! -name copyright|xargs rm || true )) && \
-(( find /usr/share/doc -empty|xargs rmdir || true ))
+(( find /usr/share/doc -empty|xargs rmdir || true )) && \
+
+# place server ident key in /var/urbackup 
+mv /root/server_ident.key /var/urbackup
 
 CMD ["/root/startup-files/start.sh"]
 
