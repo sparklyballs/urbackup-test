@@ -36,10 +36,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 (( find /usr/share/doc -depth -type f ! -name copyright|xargs rm || true )) && \
 (( find /usr/share/doc -empty|xargs rmdir || true )) && \
 
-# place server ident key in /var/urbackup 
-mv /root/server_ident.key /var/urbackup && \
-chown urbackup:urbackup /var/urbackup/server_ident.key && \
-chmod 644 /var/urbackup/server_ident.key
+chown --from=urbackup:urbackup root:root  * -R
 
 CMD ["/root/startup-files/start.sh"]
 
