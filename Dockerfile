@@ -28,9 +28,6 @@ add-apt-repository ppa:uroni/urbackup && \
 apt-get update -q && \
 apt-get -y install btrfs-tools urbackup-server && \
 
-# change ownership of key files from urbackup to root
-chown --from=urbackup:urbackup root:root  /etc /var /usr  -R > /dev/null 2>&1 && \
-
 # clean up
 apt-get clean -y && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
