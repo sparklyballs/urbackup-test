@@ -14,7 +14,7 @@ CMD ["/sbin/my_init"]
 ADD src/ /root/
 
 # set config volume
-VOLUME /var/urbackup /tmp /BACKUPS
+VOLUME /config /tmp /BACKUPS
 
 # Fix a Debianism of the nobody's uid being 65534
 RUN usermod -u 99 nobody && \
