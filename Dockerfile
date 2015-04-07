@@ -26,7 +26,8 @@ chmod +x /root/startup-files/start.sh && \
 # add repo, update apt and install build dependencies
 add-apt-repository ppa:uroni/urbackup && \
 apt-get update -q && \
-apt-get -y install btrfs-tools urbackup-server && \
+apt-get -y install urbackup-server && \
+chown -R urbackup:urbackup /BACKUPS
 
 # clean up
 apt-get clean -y && \
