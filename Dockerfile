@@ -13,9 +13,6 @@ CMD ["/sbin/my_init"]
 # Add required files that are local
 ADD src/ /root/
 
-# set config volume
-VOLUME /config /tmp /BACKUPS
-
 # Fix a Debianism of the nobody's uid being 65534
 RUN usermod -u 99 nobody && \
 usermod -g 100 nobody && \
@@ -27,7 +24,6 @@ chmod +x /root/startup-files/start.sh && \
 add-apt-repository ppa:uroni/urbackup && \
 apt-get update -q && \
 apt-get -y install urbackup-server && \
-chown -R urbackup:urbackup /BACKUPS
 
 # clean up
 apt-get clean -y && \
