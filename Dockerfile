@@ -31,8 +31,13 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 /usr/share/man /usr/share/groff /usr/share/info \
 /usr/share/lintian /usr/share/linda /var/cache/man && \
 (( find /usr/share/doc -depth -type f ! -name copyright|xargs rm || true )) && \
-(( find /usr/share/doc -empty|xargs rmdir || true ))
+(( find /usr/share/doc -empty|xargs rmdir || true )) && \
 
+mkdir -p /var/urbackup && \
+/usr/sbin/start_urbackup_server --no_daemon && \
+sleep 120 && \
+kill all urbackup
+VOLUME /var/urbackup
 
 CMD ["/root/startup-files/start.sh"]
 
