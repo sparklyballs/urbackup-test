@@ -34,10 +34,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 (( find /usr/share/doc -empty|xargs rmdir || true )) && \
 
 mkdir -p /var/urbackup && \
-/usr/sbin/start_urbackup_server --no_daemon && \
-sleep 120 && \
-kill all urbackup
-VOLUME /var/urbackup
+ln -s /var/urbackup /config
 
 CMD ["/root/startup-files/start.sh"]
 
